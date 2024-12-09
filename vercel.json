@@ -1,18 +1,15 @@
 {
   "version": 2,
   "builds": [
-    { 
-      "src": "public/index.php", 
-      "use": "vercel-php@0.6.0" 
-    }
+      { 
+          "src": "public/index.php", 
+          "use": "vercel-php@0.6.0" 
+      }
   ],
-  "env": {
-    "CUSTOM_BUILD_SCRIPT": "./build.sh"
-  },
   "routes": [
-    { 
-      "src": "/(.*)", 
-      "dest": "/public/index.php" 
-    }
+      { 
+          "src": "/(.*)", 
+          "dest": "/public/index.php" 
+      }
   ]
 }
