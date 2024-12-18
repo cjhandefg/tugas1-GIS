@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Peta Kampus di Bali</title>
   <!-- Leaflet.js CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -53,6 +54,58 @@
         <div id="google-map" class="h-[500px] w-full"></div>
       </div>
     </div>
+
+    <div class="flex flex-wrap justify-center gap-6 mb-8">
+      <div class="w-full md:w-1/2 lg:w-5/12 bg-white shadow-md rounded-lg p-6">
+        <h3 class="text-2xl font-semibold text-blue-800 mb-4 text-center">Tambahkan Marker</h3>
+        <form id="markerForm" class="space-y-4">
+          @csrf
+          <input
+            type="text"
+            id="markerName"
+            name="name"
+            placeholder="Nama Lokasi"
+            required
+            class="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <input
+            type="text"
+            id="markerLat"
+            name="lat"
+            placeholder="Latitude"
+            required
+            class="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <input
+            type="text"
+            id="markerLng"
+            name="lng"
+            placeholder="Longitude"
+            required
+            class="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500 transition duration-300">
+            Tambah Marker
+          </button>
+        </form>
+      </div>
+
+      <div class="w-full md:w-1/2 lg:w-5/12 bg-white shadow-md rounded-lg p-6">
+        <h3 class="text-2xl font-semibold text-blue-800 mb-4 text-center">Tambahkan Poligon</h3>
+        <form id="polygonForm" class="space-y-4">
+          <textarea
+            id="polygonCoords"
+            placeholder="Koordinat Poligon (JSON)"
+            required
+            class="w-full px-3 py-2 border border-blue-300 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-500 transition duration-300">
+            Tambah Poligon
+          </button>
+        </form>
+      </div>
+    </div>
+
 
     <!-- Tombol Reset Map -->
     <div class="flex justify-center mt-6">
@@ -208,6 +261,7 @@
       });
     }
   </script>
+  <script src="{{ asset('js/maps.js') }}"></script>
 </body>
 
 </html>
